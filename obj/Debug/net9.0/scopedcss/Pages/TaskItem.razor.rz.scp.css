@@ -1,0 +1,43 @@
+.task-item[b-oezeaoww7c] {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.task-item:hover[b-oezeaoww7c] {
+    transform: scale(1.01);
+    background-color: #eef;
+}
+
+button[b-oezeaoww7c] {
+    margin-right: 8px;
+}
+
+.task-list[b-oezeaoww7c] {
+    margin-top: 16px;
+}
+
+h2[b-oezeaoww7c] {
+    color: #444;
+    margin-bottom: 12px;
+}
+
+
+.task-form[b-oezeaoww7c] {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.task-form input[b-oezeaoww7c] {
+    padding: 6px;
+    font-size: 1rem;
+    margin-right: 8px;
+    width: 250px;
+}
+
+.task-form button[b-oezeaoww7c] {
+    padding: 6px 12px;
+    font-size: 1rem;
+}

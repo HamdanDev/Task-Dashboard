@@ -1,0 +1,45 @@
+@page "/dashboard"
+@using System.Collections.Generic
+
+<TaskList @ref="taskListRef" Tasks="tasks" RowTemplate="TaskRowTemplate" HeaderTemplate="HeaderContent"
+    EmptyTemplate="EmptyContent" />
+
+<div class="task-form">
+    <input @bind="newTaskTitle" @bind:event="oninput" placeholder="Enter a new task" />
+    <button @onclick="AddTask" disabled="@string.IsNullOrWhiteSpace(newTaskTitle)">Add Task</button>
+</div>
+
+@code {
+    private List<string> tasks = new() { "Build UI", "Write docs", "Test app" };
+    private TaskList<string> taskListRef;
+    private string newTaskTitle;
+
+    private RenderFragment HeaderContent => @<h2>Today's Tasks</h2>;
+    private RenderFragment EmptyContent => @<p>No tasks yet. Add one!</p>;
+
+    private RenderFragment<string> TaskRowTemplate => (task) => @<div @key="task">
+        <TaskItem Title="@task"
+                  OnComplete="() => HandleTaskComplete(task)"
+                  OnUndo="() => HandleUndo(task)" />
+    </div>;
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTaskTitle))
+        {
+            tasks.Add(newTaskTitle);
+            newTaskTitle = string.Empty;
+            taskListRef.Refresh();
+        }
+    }
+
+    private void HandleTaskComplete(string task)
+    {
+        taskListRef.Refresh();
+    }
+
+    private void HandleUndo(string task)
+    {
+        taskListRef.Refresh();
+    }
+}

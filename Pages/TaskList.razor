@@ -1,0 +1,32 @@
+@typeparam TItem
+
+<div class="task-list">
+    @HeaderTemplate
+
+    @if (Tasks?.Count > 0)
+    {
+        @foreach (var task in Tasks)
+        {
+            <div @key="task">
+                @RowTemplate(task)
+            </div>
+        }
+    }
+    else
+    {
+        @EmptyTemplate
+    }
+</div>
+
+@code {
+    // Step 3: TaskList.razor - Parent-child communication and templating
+    [Parameter] public List<TItem> Tasks { get; set; }
+    [Parameter] public RenderFragment<TItem> RowTemplate { get; set; }
+    [Parameter] public RenderFragment HeaderTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
+}

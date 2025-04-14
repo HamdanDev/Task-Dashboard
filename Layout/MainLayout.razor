@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+
+@code {
+    // Step 1: Layout with CascadingValue
+    private string ThemeColor = "#2d89ef"; // Blue theme
+}
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <CascadingValue Value="ThemeColor" Name="ThemeColor">
+            <h1>📋 Task Dashboard</h1>
+            <article class="content px-4">
+                <div class="main-layout" style="color:@ThemeColor">
+                    @Body
+                </div>
+            </article>
+        </CascadingValue>
+
+    </main>
+</div>

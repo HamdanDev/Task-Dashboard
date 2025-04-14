@@ -1,0 +1,40 @@
+
+
+<div class="task-item" style="border: 1px solid @ThemeColor; padding: 8px; margin-bottom: 8px;">
+    <p>@Title</p>
+    
+    @if (!done)
+    {
+        <button @onclick="MarkDone">Mark Done</button>
+    }
+    else
+    {
+        <button disabled>Completed</button>
+        <button @onclick="Undo">Undo</button>
+    }
+</div>
+
+
+
+@code {
+    // Step 2: TaskItem.razor - A single task item
+
+    [Parameter] public string Title { get; set; }
+    [Parameter] public EventCallback OnComplete { get; set; }
+    [Parameter] public EventCallback OnUndo { get; set; }
+    [CascadingParameter(Name = "ThemeColor")] public string ThemeColor { get; set; }
+
+    private bool done;
+
+    private void MarkDone()
+    {
+        done = true;
+        OnComplete.InvokeAsync();
+    }
+
+    private void Undo()
+    {
+        done = false;
+        OnUndo.InvokeAsync();
+    }
+}
